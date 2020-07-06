@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <style>
 html {
     height:100%;
@@ -89,11 +93,10 @@ $conexao->close();
 
 
 if($linhas = mysqli_num_rows($dados) > 0){
-  
+  $_SESSION['senha'] = $senha;
 
-     header("location:  http://localhost/her-project/in/index.html");
+     header("location:  http://localhost/her-project/in/index.php");
    
- 
 } else {
    ?>
     <div class="cont">
@@ -106,6 +109,12 @@ if($linhas = mysqli_num_rows($dados) > 0){
 }
 }
 
+?>
+
+<?php
+    if(isset($_GET['page'])){
+        include($_GET['page'] . ".php");
+    }
 ?>
 
 <script>
