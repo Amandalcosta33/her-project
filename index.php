@@ -22,19 +22,9 @@
     </div>
 
     <div style="display:none;" id="mainindex">
-        <div class="cont">
-  
-            <div class="form">
-                <h1>Welcome my babe</h1>
-              <form action="login.php" method="post">
-            <img class="img" src="img/favicon.png">
-                <input name= "password" type="password" 
-                       class="pass"
-                       placeholder="Senha" id="pass" required>
-                <button class="login" type="submit" value="Login">Login</button>
-              </form>
-            </div>
-          </div>
+          <?php
+          require_once "entrar.php"
+         ?>
        
     </div>
  

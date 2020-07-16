@@ -1,33 +1,4 @@
-<?php
-session_start();
-?>
-
-<?php
-
-
-$senha = $_POST['password'];
-
-$host = "localhost";
-$user = "root";
-$password = "";
-$database = "her";
-
-
-if ($conexao = new mysqli($host, $user, $password, $database)) {
-$sql = "SELECT pass FROM senha WHERE pass='$senha' LIMIT 1";
-$dados = $conexao ->query($sql);
-$conexao->close();
-
-
-if($linhas = mysqli_num_rows($dados) > 0){
-  $_SESSION['senha'] = $senha;
-
-     header("location:  http://localhost/her-project/in/index.php");
-   
-} else {
-   ?>
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-   <style>
+<style>
     @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
 
 * {
@@ -255,24 +226,29 @@ input[type="checkbox"]:checked:after {
 
 .button-area {
   display: flex;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   margin-top: 30px;
 }
 
 .btn {
-  text-align: center;
   font-family: inherit;
   -webkit-appearance: none;
   -moz-appearance: none;  
-  border-radius: 4px;
+  background-color: transparent;
+  border: none;
+  border-radius: 2px;
   height: 40px;
+  display: flex;
   padding: 0 35px;
   cursor: pointer;
+  font-size: 16px;
   text-transform: uppercase;
+  letter-spacing: -0.00933333em;
+  width:100%;
   
 }
 
-/* .btn-primary {
+.btn-primary {
   color: #fff;
   background: linear-gradient(198.08deg, #B4458C 45.34%, #E281E7 224.21%);
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
@@ -280,31 +256,40 @@ input[type="checkbox"]:checked:after {
 
 .btn-secondary {
   color: #C359AA;  
-} */ 
+}
 </style>
-
-  <div>
-    <h1>Senha incorreta lindinha, vamo lá pensa não é difícil!</h1>
-    <div class="button-area">
-      <button type="submit" value="Login" class="btn btn-secondary login" onclick="Voltar();""> Volta e tenta denovo</button>
+<form action="login.php" method="post">
+<div class="login-wrapper">
+    <div class="login-left">
+      <img src="http://res.cloudinary.com/dzqowkhxu/image/upload/v1513679279/bg-login_bxxfkf.png">
+      <div class="h1">Enter to my heart</div>
+    </div>
+    <div class="login-right">
+      <div class="h2">Entrar</div>
+      <div class="form-group">
+        <input type="text" id="name" name="name" placeholder="Seu nome"required >
+        <label for="name">nome</label>    
+      </div>
+         
+      <div class="form-group">
+        <input type="password" id="Pass" name= "password" placeholder="Nossa senha" required >
+        <label for="Password">senha</label>    
+      </div>
+      <div class="checkbox-container">
+        <input type="checkbox" required >
+        <div class="text-checkbox">Eu concordo em deixar minha namorada comer meu cu.</div>
+      </div> 
+      <div class="button-area">
+        <button type="submit" value="Login" class="btn btn-primary"> Entrar</button>
+      </div>
     </div>
   </div>
- 
-    <?php
-}
-}
+</form>
+  <script>
+      var openLoginRight = document.querySelector('.h1');
+var loginWrapper = document.querySelector('.login-wrapper');
 
-?>
-
-<?php
-    if(isset($_GET['page'])){
-        include($_GET['page'] . ".php");
-    }
-?>
-
-<script>
-    function Voltar(){
-        window,location.href  = "index.php";
-    }
-</script>
-
+openLoginRight.addEventListener('click', function(){
+  loginWrapper.classList.toggle('open'); 
+});
+  </script>
